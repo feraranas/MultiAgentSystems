@@ -1,0 +1,1 @@
+{"model_type": "VirusModel", "time_stamp": "2024-01-15 17:45:07.540192", "agentpy_version": "0.1.5", "python_version": "3.11.", "experiment": true, "scheduled_runs": 7680, "completed": true, "random": true, "record": false, "sample_size": 768, "iterations": 10, "run_time": "0:02:10.589255"}

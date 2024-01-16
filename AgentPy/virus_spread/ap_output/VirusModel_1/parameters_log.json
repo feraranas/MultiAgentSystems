@@ -1,0 +1,1 @@
+{"type": "saltelli", "n": 128, "randomized": false, "salib_problem": {"num_vars": 4, "names": ["population", "infection_chance", "recovery_chance", "network_randomness"], "bounds": [[100, 1001], [0.1, 1.0], [0.1, 1.0], [0.0, 1.0]], "sample_scaled": true}, "calc_second_order": false}
