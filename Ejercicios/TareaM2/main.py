@@ -92,7 +92,7 @@ def Init():
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     gluLookAt(EYE_X,EYE_Y,EYE_Z,CENTER_X,CENTER_Y,CENTER_Z,UP_X,UP_Y,UP_Z)
-    glClearColor(0,0,0,0)
+    glClearColor(1.0,1.0,1.0,1.0)
     glEnable(GL_DEPTH_TEST)
 
     sphere = gluNewQuadric()
@@ -121,7 +121,10 @@ while not done:
     
     Axis()
 
+    glColor3f(0.0,0.0,0.0)
+    op3d.scale(1.5, 1.0, 1.5)
     op3d.rotate(15, 0.5, 0.5, 0.0)
+    op3d.translate(3.0, -5.0, 1.0)
     object1.render()
 
     pygame.display.flip()
