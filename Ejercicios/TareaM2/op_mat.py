@@ -46,13 +46,15 @@ class OpMat:
 
     # Función de Rotación Eje Y
     def rotate_y(self, deg):
-        self.R = np.identity(4)
         radians = np.radians(deg)
-        self.R[1][1] = np.cos(radians)
-        self.R[1][2] = -1 * np.sin(radians)
-        self.R[2][1] = np.sin(radians)
-        self.R[2][2] = np.cos(radians)
-        self.A = self.R @ self.A
+        rotation_matrix = np.array([
+            [np.cos(radians), 0, np.sin(radians), 0],
+            [0, 1, 0, 0],
+            [-np.sin(radians), 0, np.cos(radians), 0],
+            [0, 0, 0, 1]
+        ])
+
+        self.A = rotation_matrix @ self.A
 
     # Función de Rotación Eje Z
     def rotate_z(self, deg):

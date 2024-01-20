@@ -5,12 +5,22 @@
 <summary>Definitions of Agent Based Models</summary>
 
 <ol>
-     <li> An agent-based model is a way of modeling some sort of phenomenon using discrete “agents” which interact with other agents, sometimes in very complex ways. In case this is too abstract, you can think of agents as simulated people, and you’re trying to model how they interact with each other.
+     <li> An agent-based model is a way of modeling some sort of phenomenon using discrete 
+     “agents” which interact with other agents, sometimes in very complex ways. In case this is too abstract, you can think of agents as simulated people, and you’re trying to model how they interact with each other.
      </li>
-     <li></li>
-     <li></li>
-     <li></li>
 </ol>
+
+</details>
+
+<details>
+<summary>Contract Net</summary>
+
+ <details>
+ <summary>FIPA ACL Performatives</summary>
+
+ 1. 
+
+ </details>
 
 </details>
 
@@ -18,11 +28,9 @@
 <summary>Python Libraries for Agent Based Models</summary>
 
 <ol>
-     <li>[Mesa - Python]()</li>
-     <li>[AgentPy - Python](https://agentpy.readthedocs.io/en/latest/)</li>
-     <li>[NetLogo - Java](https://ccl.northwestern.edu/netlogo/)</li>
-     <li></li>
-     <li></li>
+     [Mesa - Python]()
+     [AgentPy - Python](https://agentpy.readthedocs.io/en/latest/)
+     [NetLogo - Java](https://ccl.northwestern.edu/netlogo/)
 </ol>
 
 </details>
