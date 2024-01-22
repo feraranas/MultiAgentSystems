@@ -12,26 +12,13 @@
 
 </details>
 
-<details>
-<summary>Contract Net</summary>
-
- <details>
- <summary>FIPA ACL Performatives</summary>
-
- 1. 
-
- </details>
-
-</details>
 
 <details>
 <summary>Python Libraries for Agent Based Models</summary>
 
-<ol>
-     [Mesa - Python]()
-     [AgentPy - Python](https://agentpy.readthedocs.io/en/latest/)
-     [NetLogo - Java](https://ccl.northwestern.edu/netlogo/)
-</ol>
+[Mesa - Python]()
+[AgentPy - Python](https://agentpy.readthedocs.io/en/latest/)
+[NetLogo - Java](https://ccl.northwestern.edu/netlogo/)
 
 </details>
 

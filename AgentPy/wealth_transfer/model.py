@@ -30,6 +30,6 @@ class WealthModel(ap.Model):
           self.record("Gini Coefficient", gini(self.agents.wealth))
      
      def end(self):
-          """ Called at the end if the simulation, we record the wealth of each agent. """
+          """ Called at the end of the simulation, we record the wealth of each agent. """
           self.agents.record("wealth")
 
