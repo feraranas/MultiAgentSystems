@@ -62,7 +62,6 @@ parameters = {
 }
 ```
 
-
 ```python
 class AlmacenModel(ap.Model):
      
@@ -207,5 +206,17 @@ Tu trabajo consiste en modelar y desplegar la representación en 3D del mismo. E
 - También agrega el **diagrama de la ontología de los agentes**, así como una breve descripción de ésta.
 
 Para ambas partes del problema, considera que:
-• Tienes un almacén de MxN espacios.
-• K cajas iniciales, en posiciones aleatorias. • 5 robots.
+
+- Tienes un almacén de MxN espacios.
+- K cajas iniciales, en posiciones aleatorias.
+- 5 robots.
+
+## Referencias para armar el modelo:
+
+[Modelo Forest Fire](https://agentpy.readthedocs.io/en/latest/agentpy_forest_fire.html)
+
+[Espacios Discretos en AgentPy - Grid](https://agentpy.readthedocs.io/en/latest/reference_grid.html#agentpy.Grid)
+
+[Iterators en AgentPy - AgentIter](https://agentpy.readthedocs.io/en/latest/reference_sequences.html#agentpy.AgentIter)
+
+[Sequencias para manejar grupos de agentes](https://agentpy.readthedocs.io/en/latest/reference_sequences.html#agentpy.AgentDList)
