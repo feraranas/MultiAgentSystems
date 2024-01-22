@@ -9,6 +9,51 @@ All 4 options above can be considered as classes. And these classes are template
 that can be customized through the creation of sub-classes with their own variables
 and methods.
 
+For example, a custom agent type can be defined as follows:
+
+```python
+class MyAgent(ap.Agent):
+
+    def setup(self):
+        # Initialize an attribute with a parameter
+        self.my_attribute = self.p.my_parameter
+
+    def agent_method(self):
+        # Define custom actions here
+        pass
+```
+
+The method Agent.setup() is meant to be overwritten and will be called automatically after an agent’s creation. **All variables of an agents should be initialized within this method**.
+
+All model objects (including agents, environments, and the model itself) are equipped with the following default attributes:
+
+- `model` the model instance
+- `id` a unique identifier number for each object
+- `p` the model’s parameters
+- `log` the object’s recorded variables
+
+Now, for example a custom model would be defines as follows:
+
+```python
+class MyModel(ap.Model):
+
+    def setup(self):
+        """ Inititate a list of new agents. """
+        self.agents = ap.AgentList(self, self.p.agents, MyAgent)
+
+    def update(self):
+        """ Record a dynamic variable. """
+        self.agents.record('my_attribute')
+
+    def step(self):
+        """ Call a method for every agent. """
+        self.agents.agent_method()
+    
+    def end(self):
+        """ Report an evaluation measure here. """
+        self.report('my_measure', 1)
+```
+
 # Model
 
 The simulation procedures of a model are defined by four special methods that will be used *automatically* during different parts of a simulation.
@@ -22,7 +67,7 @@ An example of a basic model like this in action is [Wealth Transfer](../wealth_t
 
 # Agent Sequences
 
-The Sequences module provides containers for groups of agents.
+The Sequences module provides **containers for groups of agents**.
 
 The main classes are `AgentList`, `AgentDList` and `AgentSet`, which come with special methods to access and manipulate whole groups of agents.
 
@@ -56,7 +101,7 @@ There are currently three types:
 
 There are two ways to document data from the simulation for later analysis.
 
-The first way is to record **dynamic variables**, which can be recorded for each object (agent, environment, or model) and time-step. They are useful to look at the dynamics of individual or aggregate objects over time and can be documented by calling the method `record()` for the respective object. Recorded variables can at run-time with the *object's log* attribute.
+The first way is to record **dynamic variables**, which can be **recorded for each object (agent, environment, or model) and time-step.** They are useful to look at the dynamics of individual or aggregate objects over time and can be documented by calling the method `record()` for the respective object. Recorded variables can at run-time with the *object's log* attribute.
 
 The second way is to **document reporters**, which represent summary statistics or evaluation measures of a simulation. In contrast to variables, reporters can be stored only for the model as a whole and only once per run. They will be stored in a separate dataframe for easy comparison over multiple runs, and can be documented with the method `Model.report()`. Reporters can be accessed at run-time via `Model.reporters`.
 
