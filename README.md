@@ -27,6 +27,24 @@
 <summary>References & Links</summary>
 <br>
 
+<h2>Multiagent systems</h2>
+
+<details>
+<summary>Books</summary>
+<br>
+
+- Wooldridge, M. J. (2009). An introduction to multiagent systems (second). John Wiley & Sons.
+
+- Weiss, G. (2013). Multiagent Systems (second). MIT Press.
+
+- Shoham, Y., & Leyton-Brown, K. (2008). Multiagent systems. Cambridge, England: Cambridge University Press.
+
+</details>
+
+<details>
+<summary>Online articles</summary>
+<br>
+
 [Scientific Computing with Python](https://caam37830.github.io/book09_computing/agent_based_models.html) [Second Link](https://github.com/caam37830book)
 
 [Introduction to Mesa: Agent-based Modeling in Python](https:/towardsdatascience.comintroduction-to-mesa-agent-based-modeling-in-python-bcb0596e1c9a)
@@ -38,6 +56,19 @@
 [Scalable and Robust Multi-Agent Reinforcement Learning](https://wwwyoutube.com/watch?app=desktop&v=Yd6HNZnqjis)
 
 [Multi-agent systems for Challenging Real-World problems](https://wwwturing.ac.uk/research/interest-groups/multi-agent-systems)
+
+[Reactive vs Goal-oriented architectures](https://www.javatpoint.com/types-of-ai-agents)
+
+[Youtube Masterclass from Michael J. Wooldridge](https://www.youtube.com/watch?v=NSvTjB23-ak)
+
+[The Evolution of Trust](https://ncase.me/trust/)
+
+[Relationship between Nash Equilibria and Pareto Optimal Solutions](./Slides/AgentSystems/Scientific_Papers/Nash&ParetoOptimal.pdf)
+
+</details>
+
+
+<h2>Computational Graphics</h2>
 
 [Geometric Transformations](https://github.com/cgohlke/transformations/blob/master/transformations/transformations.py)
 
