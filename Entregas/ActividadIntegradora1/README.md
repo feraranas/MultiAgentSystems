@@ -1,6 +1,10 @@
-##  TC2008B. Modelación de Sistemas Multiagentes con Gráficas
+# RUN the simulation
 
-### Computacionales Actividad Integradora
+> Run: `python main.py` in this directory.
+
+###  TC2008B. Modelación de Sistemas Multiagentes con Gráficas
+
+#### Computacionales Actividad Integradora
 
 # Parte 1. Sistemas multiagentes Descripción del problema
 
@@ -72,57 +76,86 @@ class AlmacenModel(ap.Model):
           """
           
           # Calculamos el número de cajas dado un valor de densidad.
-          n_cajas = int(self.p['Densidad Cajas'] * (self.p.size ** 2))
+          n_cajas = int(self.p['densidad_cajas'])
           
           # Creamos 2 listas de agentes, una lista para cajas y otra lista de montacargas.
-          montacargas = self.montacargas = ap.AgentList(self, self.p.montacargas, MontacargasAgent)
+          montacargas = self.montacargas = ap.AgentList(self, self.p['montacargas'], MontacargasAgent)
           cajas = self.cajas = ap.AgentList(self, n_cajas)
 
           # Creamos un ambiente tipo grid (almacen).
-          self.almacen = ap.Grid(self, [self.p.size] * 2, track_empty = True)
+          self.almacen = ap.Grid(self, # la instancia del model
+                                [self.p.size] * 2, # tamaño del grid (m x n)
+                                torus = False,
+                                track_empty = True, # tracks las celdas vacías
+                                check_border = True, # asegura que el agente no se salga de los bordes
+                                )
+          
+          # Definimos las posiciones iniciales de los montacargas
+          posiciones_montacargas = [(1,1), (18,1), (1, 18), (18,18), (11, 11)]
 
           # Agregamos los agentes cajas y robots al grid en posición aleatoria.
           # ¿Cómo distinguir que uno es `montacarga` y otro es `caja`? => esto es
           #  importante porque cuando buscamos vecinos de un montacargas, nos
           #  debemos cerciorar que buscamos `cajas` y no otro `montacargas`. 
-          self.almacen.add_agents(cajas, random = True, empty = True)
-          self.almacen.add_agents(montacargas, random = True, empty = True)
+          
+          self.almacen.add_agents(montacargas,
+                                  positions = posiciones_montacargas,
+                                  random = False,
+                                  empty = True
+                                  )
+          
+          self.almacen.add_agents(cajas, # iterable de agentes a agregar
+                                  positions = None, # posiciones de los agentes
+                                  random = True, # escogemos posiciones aleatorias
+                                  empty = True # escoje las posiciones vacías
+                                  )
 
-          # Inicializamos una variable dinámica para todas las cajas.
-          # Condicion 0: desordenada
-          # Condicion 1: colisionada
-          # Condicion 2: recogida
-          # Condicion 3: ordenada
-          self.cajas.condition = 0
-
-          # Inicializamos una variable dinámica para todos los agentes.
-          # Condicion 0: en_movimiento
-          # Condicion 1: en_colision
-          # Condicion 2: en_pickup
-          # Condicion 3: en_movimiento_pickup
-          # Condicion 4: en_dropdown
-          self.montacargas.condition = 0
+          # Inicializamos una variable dinámica para los agentes cajas
+          # Condicion 0: Caja Desordenada
+          # Condicion 1: Caja Colisionada
+          # Condicion 2: Caja Recogida
+          # Condicion 3: Caja Ordenada
+          # Condicion 4: Montacargas en movimiento
+          # Condicion 5: Montacargas con caja
+          self.cajas.condicion = 0
+          self.montacargas.condicion = 2
 
      def step(self):
-          # Seleccionamos todas las cajas desordenadas.
-          cajas_desordenadas = self.cajas.select(select.cajas.condition == 0)
+
+          # Contamos las cajas desordenadas en el modelo
+          cajas_desordenadas = self.cajas.select(self.cajas.condicion == 0)
 
           # Seleccionamos los montacargas en movimiento.
-          montacargas_en_movimiento = self.montacargas.select(select.montacargas.condition == 0)
+          montacargas_en_movimiento = self.montacargas.select(self.montacargas.condicion == 2)
 
           # Para cada montacarga en estado de movimiento, vemos si tiene cajas
           # vecinas a una distancia de 1 (en cada dirección, diagonal incluída).
           for montacarga in montacargas_en_movimiento:
-               for neighbor in self.almacen.neighbors(agent=montacarga, distance=1):
-                    if neighbor.condition 
-
+               for celda_vecina in self.almacen.neighbors(agent = montacarga, distance = 1):
+                    if celda_vecina.condicion == 0: # si tiene condicion de caja desordenada
+                         celda_vecina.condicion = 1 # agregamos condicion de caja colisionada
+                         montacarga.condicion = 2 # agregamos condicion de montacargas con caja
+                         self.almacen.remove_agents(celda_vecina)  # eliminamos la(s) caja(s) colisionadas
+                         break
+                    if celda_vecina.condicion == 2: # si es otro montacargas lo evitamos
+                         
+               # si el montacargas no tiene cajas vecinas, lo movemos de posición
+               else:
+                    # Movemos al agente a una nueva `posible` posición agentpy se
+                    # encarga de checar por nosotros que la posición esté vacía.
+                    self.almacen.move_by(montacarga, # instancia del agente que moveremos
+                                        random.choice(MOVIMIENTOS) # cambio relativo de posición
+                                        )
 
           # Detenemos simulación si no hay cajas desordenadas
           if len(cajas_desordenadas) == 0:
                self.stop()
 
      def end(self):
-          pass
+          
+          # Documentamos el número de cajas ordenadas
+          cajas_ordenadas = len(self.cajas.select(self.cajas.condicion == 1))
+          self.report('Porcentaje de cajas ordenadas', cajas_ordenadas / len(self.cajas))
 ```
 
 ```python
